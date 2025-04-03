@@ -6,14 +6,14 @@ services:
     #ports:
     #  - "14501:14501"
     volumes:
-      - $PWD/config/aprsc.conf:/opt/aprsc/etc/aprsc.conf
+      - "C:/Users/jose-/OneDrive - Estudiantes ITCR/TEC/Semestre 11/Integrador/Proyecto 1/ServidorAPRS/config:/opt/aprsc/etc"
 
   collector:
     build:
       context: .
       dockerfile: trackdirect-python.dockerfile
     volumes:
-      - $PWD/config/trackdirect.ini:/root/trackdirect/config/trackdirect.ini
+      - "C:/Users/jose-/OneDrive - Estudiantes ITCR/TEC/Semestre 11/Integrador/Proyecto 1/ServidorAPRS/config:/root/trackdirect/config"
     command: /root/trackdirect/server/scripts/collector.sh trackdirect.ini 0
     depends_on:
       - "db"
@@ -24,10 +24,10 @@ services:
       context: .
       dockerfile: trackdirect-python.dockerfile
     volumes:
-      - $PWD/config/trackdirect.ini:/root/trackdirect/config/trackdirect.ini
+      - "C:/Users/jose-/OneDrive - Estudiantes ITCR/TEC/Semestre 11/Integrador/Proyecto 1/ServidorAPRS/config:/root/trackdirect/config"
     command: /root/trackdirect/server/scripts/wsserver.sh trackdirect.ini
-    #ports:
-    #  - "8090:8090"
+    ports:
+      - "8090:8090"
     depends_on:
       - "db"
       - "aprsc"
@@ -37,7 +37,7 @@ services:
       context: .
       dockerfile: trackdirect-cron.dockerfile
     volumes:
-      - $PWD/config/trackdirect.ini:/root/trackdirect/config/trackdirect.ini
+      - "C:/Users/jose-/OneDrive - Estudiantes ITCR/TEC/Semestre 11/Integrador/Proyecto 1/ServidorAPRS/config:/root/trackdirect/config"
     depends_on:
       - "db"
 
@@ -46,10 +46,10 @@ services:
       context: .
       dockerfile: trackdirect-apache.dockerfile
     volumes:
-      - $PWD/config/trackdirect.ini:/root/trackdirect/config/trackdirect.ini
-      - ./htdocs/public:/root/trackdirect/htdocs/public # For development
-    #ports:
-    #  - "8080:80"
+      - "C:/Users/jose-/OneDrive - Estudiantes ITCR/TEC/Semestre 11/Integrador/Proyecto 1/ServidorAPRS/config:/root/trackdirect/config"
+      - "./htdocs/public:/root/trackdirect/htdocs/public" # For development
+    ports:
+      - "8080:80"
     depends_on:
       - "db"
 
@@ -62,7 +62,7 @@ services:
       POSTGRES_PASSWORD: foobar
       POSTGRES_DB: trackdirect
     volumes:
-      - $PWD/db:/var/lib/postgresql/data
+      - "C:/Users/jose-/OneDrive - Estudiantes ITCR/TEC/Semestre 11/Integrador/Proyecto 1/ServidorAPRS/db:/var/lib/postgresql/data"
     command: -c config_file=/etc/postgresql.conf
     #ports:
     #  - "5432:5432"
@@ -76,4 +76,3 @@ services:
     depends_on:
       - "web"
       - "websocket"
-
