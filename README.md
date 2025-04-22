@@ -53,14 +53,10 @@ docker compose up
 Si desea ejecutar el contenedor en segundo plano (modo daemon), agregue -d al comando y utilice:
 
 bash
-Copiar
-Editar
 docker compose logs -f
 para visualizar la salida cuando lo desee. Para detener los contenedores, use:
 
 bash
-Copiar
-Editar
 docker compose down
 Si todo está correctamente configurado, podrá abrir su navegador y acceder a: http://127.0.0.1.
 
