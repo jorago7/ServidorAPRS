@@ -1,0 +1,1 @@
+En esta carpeta de Evidencias, se encuentras las capturas de pantalla e imágenes generadas y utilizadas, así como material relacionado durante el desarrollo del proyecto e informe del curso Taller Integrador IS-2025.
